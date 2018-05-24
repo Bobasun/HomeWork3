@@ -6,10 +6,10 @@ import java.util.HashMap;
 
 public class FilesOnDirectory implements IFilesOnDirectory {
 
-    private String mask= ".txt";
+//    private String mask= ".txt";
     private String path;
-    private StringBuilder sb = new StringBuilder();
     private HashMap<Integer, File> hashMap;
+    private final FilenameFilter mask = new FileMask(".txt");
 
     public FilesOnDirectory(String path) {
         this.path = path;
@@ -17,31 +17,17 @@ public class FilesOnDirectory implements IFilesOnDirectory {
         addFilestoHashMap();
     }
 
-
-    @Override
-    public void addFilestoHashMap() {
+    private void addFilestoHashMap() {
         File folder = new File(path);
         if (folder.isDirectory()) {
             int i = 0;
-            for (File file : folder.listFiles(new FilenameFilter() {
-                @Override
-                public boolean accept(File dir, String name) {
-                    return name.endsWith(mask);
-                }
-            })) {
+            for (File file : folder.listFiles(mask)){
                 if (file.isFile()) {
                     hashMap.put(i, file);
                     i++;
                 }
             }
-        } else {
-            path = null;
         }
-    }
-
-    @Override
-    public String getPath() {
-        return this.path;
     }
 
     @Override

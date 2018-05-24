@@ -1,9 +1,12 @@
 package com.brainacad.lab4.fileslist;
 
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.List;
+
 public interface IFilesOnDirectory {
     void addFilesOnListWithMask(String mask);
-    String getPath();
-    public void showListOfFiles();
+    public List<File> getList();
 
 
 }

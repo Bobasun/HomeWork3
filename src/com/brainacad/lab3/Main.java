@@ -15,10 +15,8 @@ public class Main {
             IUIPath userInput = new UserInputPath();
             IFilesOnDirectory list = new FilesOnDirectory(userInput.getPathFromUser());
 
-                list.addFilesToList();
-                list.showListOfFiles();
-
-            if (list.getPath()!=null ){
+            if (!list.addFilesToList().isEmpty() ){
+                System.out.println(list.addFilesToList());
                 break;
             }
             System.out.println("Oops, may be you wrote incorrect path.\nTry again");

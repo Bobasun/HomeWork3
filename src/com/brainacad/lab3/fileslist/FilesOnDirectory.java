@@ -9,13 +9,13 @@ public class FilesOnDirectory implements IFilesOnDirectory {
     private String path;
     List<File> list;
 
-    public FilesOnDirectory(String data){
+    public FilesOnDirectory(String data) {
         list = new ArrayList<>();
         this.path = data;
     }
 
     @Override
-    public void addFilesToList() {
+    public List<File> addFilesToList() {
         File folder = new File(path);
         if (folder.isDirectory()) {
             for (File file : folder.listFiles()) {
@@ -23,10 +23,9 @@ public class FilesOnDirectory implements IFilesOnDirectory {
                     list.add(file);
                 }
             }
-        } else {
-            path = null;
-            }
         }
+        return list;
+    }
 
 
     @Override
@@ -34,12 +33,12 @@ public class FilesOnDirectory implements IFilesOnDirectory {
         return this.path;
     }
 
-    @Override
-    public void showListOfFiles (){
-        for (File file : list) {
-            System.out.println(file.getAbsolutePath());
-        }
-    }
+//    @Override
+//    public void showListOfFiles (){
+//        for (File file : list) {
+//            System.out.println(file.getAbsolutePath());
+//        }
 }
+
 
 

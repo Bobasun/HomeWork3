@@ -7,7 +7,6 @@ import java.util.List;
 
 public class FilesOnDirectory implements IFilesOnDirectory {
 
-
     private String path;
     private List<File> list;
 
@@ -16,38 +15,23 @@ public class FilesOnDirectory implements IFilesOnDirectory {
         this.path = path;
     }
 
-
     @Override
-    public void addFilesOnListWithMask(String mask) {
+    public void addFilesOnListWithMask(String maskStr) {
         File folder = new File(path);
         if (folder.isDirectory()) {
 
-            for (File file : folder.listFiles(new FilenameFilter() {
-                @Override
-                public boolean accept(File dir, String name) {
-                    return name.contains(mask);
-                }
-            })) {
+            for (File file : folder.listFiles(new FileMask(maskStr)))
+             {
                 if (file.isFile()) {
                     list.add(file);
                 }
             }
-        } else {
-            path = null;
         }
     }
 
     @Override
-    public String getPath() {
-        return this.path;
-    }
-
-    @Override
-    public void showListOfFiles(){
-        for (File file: list) {
-            System.out.println(file);
-        }
-        if (list.isEmpty()) System.out.println("No files in directory!");
+    public List<File> getList(){
+        return list;
     }
 
 }

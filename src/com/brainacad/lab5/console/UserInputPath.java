@@ -11,9 +11,7 @@ public class UserInputPath implements IUIPath {
         getPathFromUser();
     }
 
-    @Override
-    public void getPathFromUser() throws NoSuchElementException {
-
+    private void getPathFromUser()  {
         Scanner sc = new Scanner(System.in);
         System.out.print("Please, enter path: ");
         path = sc.nextLine();

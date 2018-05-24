@@ -14,15 +14,15 @@ public class Main {
         while (true) {
 
             IUIPath userInput = new UserInputPath();
-//            userInput.getPathFromUser();
-//            FilenameFilter mask = new FileNameMask(userInput.getMask());
             IFilesOnDirectory list =  new FilesOnDirectory(userInput.getPath());
 
                 list.addFilesOnListWithMask(userInput.getMask());
-                list.showListOfFiles();
 
-            if (list.getPath()!=null ){
+            if (!list.getList().isEmpty() ){
+                System.out.println(list.getList());
                 break;
+            } else {
+                System.out.println("No files in dir");
             }
             System.out.println("Oops, may be you wrote incorrect path.\nTry again");
         }
